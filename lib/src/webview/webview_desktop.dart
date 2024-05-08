@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:webf/webf.dart';
 import 'package:webview_windows/webview_windows.dart';
+import 'package:flutter_linux_webview/flutter_linux_webview.dart';
 
 class WebviewDesktop extends StatefulWidget {
   final String url;
@@ -15,7 +16,6 @@ class WebviewDesktop extends StatefulWidget {
 }
 
 class _WebviewDesktopState extends State<WebviewDesktop> {
-
   final String url;
   _WebviewDesktopState({required this.url});
 
@@ -23,16 +23,33 @@ class _WebviewDesktopState extends State<WebviewDesktop> {
   Widget build(BuildContext context) {
     final MediaQueryData queryData = MediaQuery.of(context);
     final Size viewportSize = queryData.size;
-    return (!Platform.isWindows) ? Column(
-      children: [
-        WebF(
-          viewportWidth: viewportSize.width - queryData.padding.horizontal,
-          viewportHeight: viewportSize.height - queryData.padding.vertical,
-          bundle: WebFBundle.fromUrl(url),
-        ),
-      ],
-    ): WebviewWindows(url: url)
-    ;
+    return (!Platform.isWindows)
+        ? Column(
+            children: [
+              WebF(
+                viewportWidth:
+                    viewportSize.width - queryData.padding.horizontal,
+                viewportHeight:
+                    viewportSize.height - queryData.padding.vertical,
+                bundle: WebFBundle.fromUrl(url),
+              ),
+            ],
+          )
+        : WebviewWindows(url: url);
+  }
+}
+
+class WebviewLinux extends StatefulWidget {
+  const WebviewLinux({super.key});
+
+  @override
+  State<WebviewLinux> createState() => _WebviewLinuxState();
+}
+
+class _WebviewLinuxState extends State<WebviewLinux> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
