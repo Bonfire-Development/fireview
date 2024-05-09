@@ -1,6 +1,6 @@
 name: fireview
 description: a webview widget with full-platform support, based on the existing packages
-version: 0.4.3
+version: 0.4.4
 homepage: https://github.com/Bonfire-Development/fireview
 
 platforms:
