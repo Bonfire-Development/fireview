@@ -1,7 +1,6 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-import 'package:webf/webf.dart';
 import 'package:webview_windows/webview_windows.dart';
 // import 'package:flutter_linux_webview/flutter_linux_webview.dart';
 
@@ -22,19 +21,8 @@ class _WebviewDesktopState extends State<WebviewDesktop> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData queryData = MediaQuery.of(context);
-    final Size viewportSize = queryData.size;
     return (!Platform.isWindows)
-        ? Column(
-            children: [
-              WebF(
-                viewportWidth:
-                    viewportSize.width - queryData.padding.horizontal,
-                viewportHeight:
-                    viewportSize.height - queryData.padding.vertical,
-                bundle: WebFBundle.fromUrl(url),
-              ),
-            ],
-          )
+        ? const Text("not implemented yet...")
         : WebviewWindows(url: url);
   }
 }
